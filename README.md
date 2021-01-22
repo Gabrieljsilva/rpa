@@ -88,9 +88,9 @@ As an example I will add some permissions using the data already registered abov
 
 We can read the following permissions as follows:
 
-"guest can post sessions"
-"guest can post users"
-"admin can get customers"
+"guest can post sessions" <br>
+"guest can post users" <br>
+"admin can get customers" <br>
 
 ## Protecting resources
 To protect our routes we need to use a Decorator called "Protect", which can be found inside the "sessions" module, this decorator receives the resource name as the first parameter (same in the database) and the other parameters are other optional decorators. Example:
