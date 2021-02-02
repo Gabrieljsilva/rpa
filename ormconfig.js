@@ -1,6 +1,5 @@
 // load enviroment variables
 const dotenv = require('dotenv');
-const path = require('path');
 dotenv.config();
 
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
@@ -12,36 +11,9 @@ module.exports = {
   username: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME,
-  migrations: [
-    path.resolve(
-      __dirname,
-      'dist',
-      'shared',
-      'database',
-      'migrations',
-      '*.{js,ts}',
-    ),
-  ],
-  entities: [
-    path.resolve(
-      __dirname,
-      'dist',
-      'shared',
-      'database',
-      'entities',
-      '*.{js,ts}',
-    ),
-  ],
-  subscribers: [
-    path.resolve(
-      __dirname,
-      'dist',
-      'shared',
-      'database',
-      'subscribers',
-      '*.{js,ts}',
-    ),
-  ],
+  entities: ['dist/shared/database/entities/*.js'],
+  migrations: ['dist/shared/database/migrations/*.js'],
+  subscribers: ['dist/shared/database/subscribers/*.js'],
   synchronize: false,
   cli: {
     entitiesDir: 'src/shared/database/entities',

@@ -4,10 +4,7 @@ import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthenticateGuard implements CanActivate {
-  constructor(
-    private jwtService: JwtService,
-    private usersService: UsersService,
-  ) {}
+  constructor(private jwtService: JwtService, private usersService: UsersService) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const bearerToken = request.headers.authorization as string;

@@ -6,10 +6,7 @@ import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class SessionsService {
-  constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
   async validateUser(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);

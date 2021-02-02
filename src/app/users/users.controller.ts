@@ -1,10 +1,12 @@
 import { Controller, Post, Get, Body, ConflictException } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { UsersService } from './users.service';
 import { CreateUserDTO } from './dto/createuserDto';
 import { Protect } from '../sessions/protect.decorator';
 import { ValidationPipe } from '../utils/validation.pipe';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
@@ -17,9 +19,7 @@ export class UsersController {
   @Protect('users')
   @Post()
   async create(@Body(new ValidationPipe()) userDto: CreateUserDTO) {
-    const userExists = await this.usersService.checkIfUserExistsByEmail(
-      userDto.email,
-    );
+    const userExists = await this.usersService.checkIfUserExistsByEmail(userDto.email);
 
     if (userExists) {
       throw new ConflictException('user already exists');

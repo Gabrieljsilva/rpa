@@ -18,11 +18,7 @@ export class Permission {
   private operations: OperationsInterface;
   private manager: EntityManager;
 
-  constructor(
-    role: string,
-    operations: OperationsInterface,
-    manager: EntityManager,
-  ) {
+  constructor(role: string, operations: OperationsInterface, manager: EntityManager) {
     this.role = role;
     this.operations = operations;
     this.manager = manager;

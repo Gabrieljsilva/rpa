@@ -1,5 +1,6 @@
 import { Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags } from '@nestjs/swagger';
 
 import { User } from '../utils/user.decorator';
 import { User as UserEntity } from '../../shared/database/entities/User';
@@ -7,6 +8,7 @@ import { SessionsService } from './sessions.service';
 
 import { Protect } from './protect.decorator';
 
+@ApiTags('sessions')
 @Controller('sessions')
 export class SessionsController {
   constructor(private sessionsService: SessionsService) {}

@@ -12,12 +12,7 @@ import { Role } from '../shared/database/entities/Role';
 import { UserRole } from '../shared/database/entities/UserRole';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(),
-    TypeOrmModule.forFeature([User, Role, UserRole]),
-    UsersModule,
-    SessionsModule,
-  ],
+  imports: [TypeOrmModule.forRoot(), TypeOrmModule.forFeature([User, Role, UserRole]), UsersModule, SessionsModule],
   controllers: [AppController],
   providers: [AppService],
 })
