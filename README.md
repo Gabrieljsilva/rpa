@@ -4,8 +4,6 @@ Sometimes can be hard to handle with authentication on some applications, especi
 ## Installation
 ```bash
 $ npm install
-or
-$ yarn install
 ```
 
 ## Setting up enviroment variables
@@ -28,8 +26,6 @@ Before starting the application we need to run the existing migrations in ```src
  
 ```bash
 $ npm run migration:run
-or
-$ yarn migration:run
 ```
 After that, the environment is ready to run the application.
 
@@ -37,18 +33,12 @@ After that, the environment is ready to run the application.
 ```bash
 # development
 $ npm run start
-or
-$ yarn start
 
 # watch mode
 $ npm run start:dev
-or
-$ yarn start:dev
 
 # production mode
 $ npm run start:prod
-or
-$ yarn start:prod
 ```
 
 ## Providing initial data to database
@@ -118,3 +108,32 @@ In the example above we import the "Protect" decorator and decorate our "Get" ro
 	"error":  "Forbidden"
 }
 ```
+## Patterns
+This project is divided into several layers, each with its own responsibility. We can categorize them into:
+
+- Controllers;
+- Actions;
+- Services;
+- Entities/Repositories;
+
+### Controllers
+Layer responsible for mapping routes and receiving requests. In this layer, some validations and serialization of the received data will take place. The controller is also responsible for returning the data to the client.
+
+### Actions
+Actions will be used by the controllers and is responsible for executing the request. This layer will contain the business rules and the processed data that will be returned to the client. Actions can use the services layer to execute their purpose. Action will never use Entities/Repositories directly.
+
+### Services
+Services is a layer that should contain support functions for Actions or other Services. This layer will make the connection between Actions and Entities/Repositories, external APIs.
+
+### Entities/Repositories
+This layer is responsible for interacting with the database, no layer other than services can make use of the entities / repositories directly.
+
+
+## Open API
+Open API é uma específicação para documentação de APIs. O Nestjs possui uma extensão para trabalhar com o Open API baseada em decorators. Todos os Controllers, Actions e DTO (Data Transfer Object) deverão ser mapeados.
+[veja a documentação do Open Opi](https://docs.nestjs.com/openapi/introduction)
+
+## Validação e Serialização de dados
+All data received from the client must be validated and serialized to ensure that both actions and services receive the information necessary to execute the request. To validate and serialize we use two external libraries, they are: ["class-validator"](https://docs.nestjs.com/techniques/validation) and ["class-transformer"](https://docs.nestjs.com/techniques/serialization).
+
+All DTOs must be declared within the "DTO" folder within their corresponding module. All DTO properties must be marked with the decorator "@Expose" from lib "class-transformer", this will guarantee that the data will be correctly serialized, without extra information or missing.
