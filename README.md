@@ -9,17 +9,23 @@ $ npm install
 ## Setting up enviroment variables
 Create a file called ".env" at the root of the project. Then add the following environment variables:
 
-| NAME         | DESCRIPTION                                               | EXAMPLES         |
-|--------------|-----------------------------------------------------------|------------------|
-| APP_PORT     | The port that will be used to run the app.                | 3333             |
-| APP_HOST     | The host name that will be used to run the app.           | localhost        |
-| APP_PROTOCOL | The protocol that will be used by the app (http or https) | http             |
-| APP_SECRET   | Private key used to encrypt app data.                     | SomeHashedString |
-| DB_HOST      | The host name of the database.                            | localhost        |
-| DB_PORT      | The port of the database.                                 | 5432             |
-| DB_USER      | The user of the database                                  | docker           |
-| DB_PASSWORD  | The password for the database user.                       | docker           |
-| DB_NAME      | The database name.                                        | rpa              |
+| NAME          | DESCRIPTION                                                                                  | EXAMPLES            |
+|---------------|----------------------------------------------------------------------------------------------|---------------------|
+| APP_PORT      | The port that will be used to run the app.                                                   | 3333                |
+| APP_HOST      | The host name that will be used to run the app.                                              | localhost           |
+| APP_PROTOCOL  | The protocol that will be used by the app (http or https)                                    | http                |
+| APP_SECRET    | Private key used to encrypt app data.                                                        | SomeHashedString    |
+| DB_HOST       | The host name of the database.                                                               | localhost           |
+| DB_PORT       | The port of the database.                                                                    | 5432                |
+| DB_USER       | The user of the database                                                                     | docker              |
+| DB_PASSWORD   | The password for the database user.                                                          | docker              |
+| DB_NAME       | The database name.                                                                           | rpa                 |
+| REDIS_HOST    | the host name of redis database that will used by application to manage queues and caching.  | localhost           |
+| REDIS_PORT    | the port of redis database that will used by application to manage queues and caching.       | 6379                |
+| SMTP_HOST     | The SMTP host name that will be used as relay by email services.                             | smtp.mailtrap.io    |
+| SMTP_PORT     | The SMTP port that will be used as relay by email services.                                  | 2525                |
+| SMTP_USER     | The SMTP user that will be used as relay by email services                                   | your_smtp_username  |
+| SMTP_PASSWORD | The SMTP password that will be used as relay by email services                               | your_smtp_password  |
 
 ## Running the migrations
 Before starting the application we need to run the existing migrations in ```src/shared/database/migrations```. To do this, run one of the following commands:
