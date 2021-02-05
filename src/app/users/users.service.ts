@@ -5,13 +5,14 @@ import { Repository } from 'typeorm';
 import { User } from '../../shared/database/entities/User';
 import { Role } from '../../shared/database/entities/Role';
 import { CreateUserDTO } from './dto/createuserDto';
+import { EmailsService } from '../emails/emails.service';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
-    @InjectRepository(Role)
-    private roleRepository: Repository<Role>,
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(Role) private readonly roleRepository: Repository<Role>,
+    private readonly emailsService: EmailsService,
   ) {}
 
   async store(userDto: CreateUserDTO) {
@@ -21,12 +22,13 @@ export class UsersService {
   }
 
   async findAll() {
+    await this.emailsService.sendHelloMail('gabriel@gmail.com', { userName: 'Gabriel' });
     return this.userRepository.find({
       select: ['id', 'name', 'email', 'status', 'createdAt', 'updatedAt'],
     });
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string) {
     return await this.userRepository.findOne({ email });
   }
 

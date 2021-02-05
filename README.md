@@ -133,7 +133,32 @@ This layer is responsible for interacting with the database, no layer other than
 Open API é uma específicação para documentação de APIs. O Nestjs possui uma extensão para trabalhar com o Open API baseada em decorators. Todos os Controllers, Actions e DTO (Data Transfer Object) deverão ser mapeados.
 [veja a documentação do Open Opi](https://docs.nestjs.com/openapi/introduction)
 
-## Validação e Serialização de dados
+## Data Validation and Data Serialization
 All data received from the client must be validated and serialized to ensure that both actions and services receive the information necessary to execute the request. To validate and serialize we use two external libraries, they are: ["class-validator"](https://docs.nestjs.com/techniques/validation) and ["class-transformer"](https://docs.nestjs.com/techniques/serialization).
 
 All DTOs must be declared within the "DTO" folder within their corresponding module. All DTO properties must be marked with the decorator "@Expose" from lib "class-transformer", this will guarantee that the data will be correctly serialized, without extra information or missing.
+
+## Email Queue Jobs
+Este boilterplate possui uma implementação de processamento de email com Nodemailer e Bull. Ele está disponível no módulo global "emails".
+
+## Docker Utilitie Commands
+
+Postgres Database
+```bash
+  sudo docker run -d \
+  --name postgresdb \
+  -e POSTGRES_USER=docker \
+  -e POSTGRES_PASSWORD=docker \
+  -e POSTGRES_DB=austromiautas \
+  -v /var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres:13.1
+```
+
+
+Redis Database
+```bash
+  sudo docker run --name redisdb -d \
+  -p 6379:6379 \
+  redis
+```
