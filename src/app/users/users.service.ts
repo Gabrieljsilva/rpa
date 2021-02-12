@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 
 import { User } from '../../shared/database/entities/User';
 import { Role } from '../../shared/database/entities/Role';
-import { CreateUserDTO } from './dto/createuserDto';
+import { CreateUserDTO } from './DTO/createUser.dto';
 import { EmailsService } from '../emails/emails.service';
 
 @Injectable()

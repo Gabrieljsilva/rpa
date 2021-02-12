@@ -3,7 +3,7 @@ import { ApiTags, ApiBody } from '@nestjs/swagger';
 
 import { UsersActions } from './users.actions';
 
-import { CreateUserDTO } from './dto/createuserDto';
+import { CreateUserDTO } from './DTO/createUser.dto';
 import { Protect } from '../auth/protect.decorator';
 import { ValidationPipe } from '../utils/validation.pipe';
 
