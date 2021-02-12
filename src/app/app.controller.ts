@@ -1,16 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 import { ApiTags } from '@nestjs/swagger';
 
-import { Protect } from './sessions/protect.decorator';
+import { Protect } from './auth/protect.decorator';
 
-@ApiTags('index')
+@ApiTags('root')
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-  @Protect('index')
+  @Protect()
   @Get()
   index() {
-    return { hello: 'World' };
+    return 'Hello World';
   }
 }

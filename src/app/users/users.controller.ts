@@ -4,7 +4,7 @@ import { ApiTags, ApiBody } from '@nestjs/swagger';
 import { UsersActions } from './users.actions';
 
 import { CreateUserDTO } from './dto/createuserDto';
-import { Protect } from '../sessions/protect.decorator';
+import { Protect } from '../auth/protect.decorator';
 import { ValidationPipe } from '../utils/validation.pipe';
 
 @ApiTags('users')
@@ -13,15 +13,15 @@ export class UsersController {
   constructor(private readonly usersAction: UsersActions) {}
 
   @ApiBody({ type: CreateUserDTO })
-  @Protect('users')
+  @Protect()
   @Post()
   async create(@Body(new ValidationPipe()) userDTO: CreateUserDTO) {
     return this.usersAction.create(userDTO);
   }
 
-  @Protect('users')
+  @Protect()
   @Get()
-  async findAll() {
+  async list() {
     return this.usersAction.list();
   }
 }

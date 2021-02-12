@@ -9,7 +9,7 @@ export class ProtectGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const user = request.user;
     const method = request.method;
-    const resource = this.reflector.get<string>('resource', context.getHandler());
+    const resource = request.route.path;
 
     if (user === 'guest') {
       const hasPermission = await this.usersService.checkGuestPermission(resource, method);
